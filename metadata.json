@@ -1,0 +1,6 @@
+{
+  "name": "PUJAPATH - Kolkata Durga Puja Planner Architecture",
+  "description": "Phase 0 Technical Architecture, Domain Model, and Engineering Contracts for PUJAPATH: AI-powered Durga Puja planning and Kolkata exploration platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
