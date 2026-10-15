@@ -117,7 +117,14 @@ export const KOLKATA_HUBS = [
   { id: 'node_rabindra_sarobar', name: 'Rabindra Sarobar Metro Station', shortName: 'Rabindra Sarobar', zone: 'South' },
   { id: 'node_taratala', name: 'Taratala Crossing & Majerhat', shortName: 'Taratala', zone: 'South' },
   { id: 'node_bagbazar_ghat', name: 'Bagbazar Launch Ghat', shortName: 'Bagbazar', zone: 'North' },
-  { id: 'node_saltlake_fd', name: 'Salt Lake Central Park & FD Block', shortName: 'Salt Lake', zone: 'East' }
+  { id: 'node_saltlake_fd', name: 'Salt Lake Central Park & FD Block', shortName: 'Salt Lake', zone: 'East' },
+  { id: 'node_shreebhumi', name: 'Sreebhumi VIP Road Footbridge', shortName: 'Lake Town/Sreebhumi', zone: 'East' },
+  { id: 'node_dumdum_park', name: 'Dum Dum Park VIP Road Junction', shortName: 'Dum Dum Park', zone: 'East' },
+  { id: 'node_jodhpur_park', name: 'Jodhpur Park & Dhakuria Junction', shortName: 'Jodhpur Park', zone: 'South' },
+  { id: 'node_bally', name: 'Bally Ghat & GT Road Junction', shortName: 'Bally', zone: 'Howrah' },
+  { id: 'node_belur', name: 'Belur Station & GT Road', shortName: 'Belur', zone: 'Howrah' },
+  { id: 'node_batanagar', name: 'Batanagar Riverside & Maheshtala', shortName: 'Batanagar', zone: 'Suburban' },
+  { id: 'node_haridevpur', name: 'Haridevpur & Motilal Gupta Road', shortName: 'Haridevpur', zone: 'South' }
 ] as const;
 
 export const TRIP_PRESETS: readonly TripPreset[] = [
@@ -336,25 +343,41 @@ export default function App() {
   const [festiveTheme, setFestiveTheme] = useState<'shobho_sharodiya' | 'sabeki_heritage' | 'alokshobha_lights' | 'contemporary_art'>('shobho_sharodiya');
   const [dhaakBeating, setDhaakBeating] = useState(true);
 
+  const scrollToPlanSection = () => {
+    setTimeout(() => {
+      const el = document.getElementById('itinerary-results-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 60);
+  };
+
   // Run canonical itinerary automatically on first mount
   useEffect(() => {
-    handleGeneratePlan();
+    handleGeneratePlan(undefined, false);
   }, []);
 
-  const handleGeneratePlan = async (overrides?: {
-    startLocation?: string;
-    endLocation?: string;
-    startTime?: string;
-    deadlineTime?: string;
-    budgetInr?: number;
-    desiredPujaCount?: number;
-    walkingTolerance?: WalkingTolerance;
-    requiresFood?: boolean;
-    preferredCuisine?: CuisineType;
-    selectedCategories?: PujaCategory[];
-    allowedTransportModes?: TransportMode[];
-  }) => {
+  const handleGeneratePlan = async (
+    overrides?: {
+      startLocation?: string;
+      endLocation?: string;
+      startTime?: string;
+      deadlineTime?: string;
+      budgetInr?: number;
+      desiredPujaCount?: number;
+      walkingTolerance?: WalkingTolerance;
+      requiresFood?: boolean;
+      preferredCuisine?: CuisineType;
+      selectedCategories?: PujaCategory[];
+      allowedTransportModes?: TransportMode[];
+    },
+    shouldScroll: boolean = true
+  ) => {
+    setActiveView('planner');
     setIsGenerating(true);
+    if (shouldScroll) {
+      scrollToPlanSection();
+    }
     try {
       const curStart = overrides?.startLocation ?? startLocation;
       const curEnd = overrides?.endLocation ?? endLocation;
@@ -405,6 +428,9 @@ export default function App() {
       console.error('Plan generation failed:', err);
     } finally {
       setIsGenerating(false);
+      if (shouldScroll) {
+        scrollToPlanSection();
+      }
     }
   };
 
@@ -421,7 +447,7 @@ export default function App() {
     setRequiresFood(preset.requiresFood);
     setPreferredCuisine(preset.preferredCuisine);
 
-    // Immediately trigger calculation with updated parameters
+    // Immediately trigger calculation with updated parameters & scroll down to plan
     handleGeneratePlan({
       startLocation: preset.startLocation,
       endLocation: preset.endLocation,
@@ -432,7 +458,7 @@ export default function App() {
       walkingTolerance: preset.walkingTolerance,
       requiresFood: preset.requiresFood,
       preferredCuisine: preset.preferredCuisine
-    });
+    }, true);
   };
 
   const handleSwapLocations = () => {
@@ -483,7 +509,7 @@ export default function App() {
         walkingTolerance: newWalk,
         requiresFood: newFood,
         preferredCuisine: newCuisine
-      });
+      }, true);
     } catch (err) {
       console.error('Failed to parse prompt:', err);
     } finally {
@@ -511,7 +537,7 @@ export default function App() {
       <FestiveHeader
         activeTheme={festiveTheme}
         onThemeChange={setFestiveTheme}
-        onGeneratePlan={() => handleGeneratePlan()}
+        onGeneratePlan={() => handleGeneratePlan(undefined, true)}
         onRunTests={() => {
           setActiveView('tests');
           handleRunAllTests();
@@ -1077,7 +1103,7 @@ export default function App() {
 
                 <button
                   type="button"
-                  onClick={() => handleGeneratePlan()}
+                  onClick={() => handleGeneratePlan(undefined, true)}
                   disabled={isGenerating}
                   className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-red-700 via-rose-700 to-red-800 hover:from-red-800 hover:to-rose-800 text-white rounded-xl text-xs font-bold transition shadow-sm cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                 >
@@ -1096,9 +1122,36 @@ export default function App() {
               </div>
             </div>
 
-            {/* Itinerary Results Section */}
-            {itineraryResult && (
-              <div className="space-y-5">
+            {/* Itinerary Results Section Anchor */}
+            <div id="itinerary-results-section" className="scroll-mt-24 space-y-5">
+              {/* Computing Progress Feedback when Generating */}
+              {isGenerating && (
+                <div className="p-5 sm:p-6 rounded-2xl border-2 border-red-500 bg-gradient-to-r from-red-50 via-white to-amber-50 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 animate-pulse">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-red-700 text-white flex items-center justify-center shrink-0 shadow-sm animate-spin">
+                      <RotateCcw className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-sm sm:text-base font-black text-red-950 flex items-center gap-2">
+                        <span>পূজাপথ অ্যালগরিদম সক্রিয়</span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-100 text-red-800 font-bold uppercase font-mono">
+                          Optimizing Route
+                        </span>
+                      </div>
+                      <div className="text-xs text-stone-600 mt-0.5">
+                        Evaluating 74 pandals, multimodal transit hops, crowd telemetry, and dwell feasibility...
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-xs font-mono font-bold text-red-800 bg-red-100/80 px-3 py-1.5 rounded-xl border border-red-200 shrink-0">
+                    Solving Kolkata Transit Graph...
+                  </div>
+                </div>
+              )}
+
+              {/* Itinerary Results Display */}
+              {itineraryResult && (
+                <div className="space-y-5">
                 {/* Result Status Banner - White & Vermilion / Emerald Glow */}
                 <div className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
                   itineraryResult.status === 'SUCCESS'
@@ -1504,6 +1557,7 @@ export default function App() {
                 )}
               </div>
             )}
+            </div>
           </div>
         )}
 

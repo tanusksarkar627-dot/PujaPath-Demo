@@ -18,41 +18,89 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     // North Kolkata
     { id: 'puja_tala_prattoy', name: 'Tala Prattoy', x: 430, y: 50, zone: 'NORTH' },
     { id: 'puja_bagbazar', name: 'Bagbazar Sarbojanin', x: 380, y: 70, zone: 'NORTH' },
+    { id: 'puja_nalin_sarkar_street', name: 'Nalin Sarkar Street', x: 475, y: 80, zone: 'NORTH' },
+    { id: 'puja_sikdar_bagan', name: 'Sikdar Bagan', x: 450, y: 85, zone: 'NORTH' },
     { id: 'puja_hatibagan_sarbojanin', name: 'Hatibagan Sarbojanin', x: 490, y: 95, zone: 'NORTH' },
     { id: 'puja_kumartuli_park', name: 'Kumartuli Park', x: 360, y: 125, zone: 'NORTH' },
+    { id: 'puja_kumartuli_sarbojanin', name: 'Kumartuli Sarbojanin', x: 345, y: 120, zone: 'NORTH' },
     { id: 'puja_sovabazar_rajbari', name: 'Sovabazar Rajbari', x: 460, y: 140, zone: 'NORTH' },
+    { id: 'puja_jagat_mukherjee_park', name: 'Jagat Mukherjee Park', x: 435, y: 130, zone: 'NORTH' },
+    { id: 'puja_pathuriaghata_ghosh_bari', name: 'Pathuriaghata Ghosh Bari', x: 365, y: 160, zone: 'NORTH' },
+    { id: 'puja_mitra_bari', name: 'Dorjipara Mitra Bari', x: 420, y: 165, zone: 'NORTH' },
     { id: 'puja_ahiritola', name: 'Ahiritola Sarbojanin', x: 330, y: 145, zone: 'NORTH' },
     { id: 'puja_kashi_bose_lane', name: 'Kashi Bose Lane', x: 500, y: 175, zone: 'NORTH' },
+    { id: 'puja_telengabagan', name: 'Telengabagan', x: 550, y: 115, zone: 'NORTH' },
+    { id: 'puja_dumdum_park_tarun_dal', name: 'Dum Dum Park Tarun Dal', x: 620, y: 65, zone: 'NORTH' },
+    { id: 'puja_dumdum_park_bharat_chakra', name: 'Dum Dum Park Bharat Chakra', x: 645, y: 50, zone: 'NORTH' },
 
     // Howrah & West Bank
+    { id: 'puja_bally_sarbojanin', name: 'Bally Sarbojanin', x: 130, y: 55, zone: 'HOWRAH' },
+    { id: 'puja_bally_durgotsav_samiti', name: 'Bally Durgotsav', x: 125, y: 75, zone: 'HOWRAH' },
+    { id: 'puja_belur_sarbojanin', name: 'Belur Sarbojanin', x: 135, y: 105, zone: 'HOWRAH' },
     { id: 'puja_salkia_alapani', name: 'Salkia Alapani (Howrah)', x: 140, y: 160, zone: 'HOWRAH' },
+    { id: 'puja_howrah_sanatan_dharmasabha', name: 'Howrah Dharmasabha', x: 165, y: 250, zone: 'HOWRAH' },
+    { id: 'puja_howrah_ramkrishnapur', name: 'Ramkrishnapur Ghat (Howrah)', x: 155, y: 280, zone: 'HOWRAH' },
+    { id: 'puja_kadamtala_sarbojanin', name: 'Kadamtala (Central Howrah)', x: 110, y: 310, zone: 'HOWRAH' },
+    { id: 'puja_chatterjeehat_sarbojanin', name: 'Chatterjeehat (Shibpur)', x: 115, y: 360, zone: 'HOWRAH' },
     { id: 'puja_shibpur_mandirtala', name: 'Shibpur Mandirtala (Howrah)', x: 130, y: 390, zone: 'HOWRAH' },
 
     // Central Kolkata
+    { id: 'puja_simla_bayam_samity', name: 'Simla Bayam Samity', x: 430, y: 195, zone: 'CENTRAL' },
+    { id: 'puja_chaltabagan_lohapatty', name: 'Chaltabagan Lohapatty', x: 490, y: 205, zone: 'CENTRAL' },
     { id: 'puja_mohammad_ali_park', name: 'Mohammad Ali Park', x: 390, y: 220, zone: 'CENTRAL' },
     { id: 'puja_college_square', name: 'College Square', x: 470, y: 235, zone: 'CENTRAL' },
+    { id: 'puja_bowbazar_sarbojanin', name: 'Bowbazar Sarbojanin', x: 440, y: 255, zone: 'CENTRAL' },
     { id: 'puja_santosh_mitra_square', name: 'Santosh Mitra Sq (Lebutala)', x: 530, y: 245, zone: 'CENTRAL' },
+    { id: 'puja_subodh_mallick_square', name: 'Subodh Mallick Square', x: 450, y: 275, zone: 'CENTRAL' },
+    { id: 'puja_rani_rashmoni_bari', name: 'Janbazar Rani Rashmoni Bari', x: 395, y: 285, zone: 'CENTRAL' },
 
-    // East Kolkata (Salt Lake / VIP Road)
+    // East Kolkata (Salt Lake, VIP Road, New Town)
     { id: 'puja_sreebhumi', name: 'Sreebhumi Sporting Club', x: 640, y: 110, zone: 'EAST' },
+    { id: 'puja_lake_town_adhibasi', name: 'Lake Town Adhibasi Brinda', x: 610, y: 120, zone: 'EAST' },
+    { id: 'puja_dumdum_park_tarun_sangha', name: 'Dum Dum Park Tarun Sangha', x: 635, y: 80, zone: 'EAST' },
+    { id: 'puja_laboni_saltlake', name: 'Laboni Estate Salt Lake', x: 630, y: 165, zone: 'EAST' },
+    { id: 'puja_cf_block_saltlake', name: 'CF Block Salt Lake', x: 660, y: 175, zone: 'EAST' },
+    { id: 'puja_aj_block_saltlake', name: 'AJ Block Salt Lake', x: 680, y: 190, zone: 'EAST' },
+    { id: 'puja_ak_block_saltlake', name: 'AK Block Salt Lake', x: 695, y: 205, zone: 'EAST' },
     { id: 'puja_fd_block_saltlake', name: 'FD Block Salt Lake', x: 670, y: 220, zone: 'EAST' },
+    { id: 'puja_bj_block_saltlake', name: 'BJ Block Salt Lake', x: 650, y: 240, zone: 'EAST' },
+    { id: 'puja_new_town_sarbojanin', name: 'New Town Sarbojanin', x: 705, y: 140, zone: 'EAST' },
 
     // South Kolkata
     { id: 'puja_maddox_square', name: 'Maddox Square', x: 490, y: 440, zone: 'SOUTH' },
+    { id: 'puja_hindustan_park', name: 'Hindustan Park', x: 480, y: 475, zone: 'SOUTH' },
+    { id: 'puja_deshapriya_park', name: 'Deshapriya Park', x: 440, y: 465, zone: 'SOUTH' },
+    { id: 'puja_samaj_sebi_sangha', name: 'Samaj Sebi Sangha', x: 460, y: 480, zone: 'SOUTH' },
     { id: 'puja_tridhara_sammilani', name: 'Tridhara Sammilani', x: 390, y: 485, zone: 'SOUTH' },
     { id: 'puja_badamtala_ashar_sangha', name: 'Badamtala Ashar Sangha', x: 360, y: 505, zone: 'SOUTH' },
+    { id: 'puja_66_pally', name: '66 Pally Club', x: 340, y: 495, zone: 'SOUTH' },
     { id: 'puja_singhi_park', name: 'Singhi Park', x: 470, y: 515, zone: 'SOUTH' },
     { id: 'puja_ekdalia_evergreen', name: 'Ekdalia Evergreen', x: 525, y: 505, zone: 'SOUTH' },
     { id: 'puja_ballygunge_cultural', name: 'Ballygunge Cultural', x: 550, y: 470, zone: 'SOUTH' },
+    { id: 'puja_bosepukur_sitala', name: 'Bosepukur Sitala Mandir', x: 550, y: 520, zone: 'SOUTH' },
     { id: 'puja_mudiali_club', name: 'Mudiali Club', x: 410, y: 535, zone: 'SOUTH' },
+    { id: 'puja_shiv_mandir', name: 'Shiv Mandir Sarbojanin', x: 395, y: 525, zone: 'SOUTH' },
+    { id: 'puja_babubagan', name: 'Babubagan Dhakuria', x: 510, y: 540, zone: 'SOUTH' },
+    { id: 'puja_selimpur_pally', name: 'Selimpur Pally', x: 530, y: 550, zone: 'SOUTH' },
     { id: 'puja_chetla_agrani', name: 'Chetla Agrani', x: 330, y: 520, zone: 'SOUTH' },
     { id: 'puja_suruchi_sangha', name: 'Suruchi Sangha', x: 290, y: 530, zone: 'SOUTH' },
-    { id: 'puja_naktala_udayan', name: 'Naktala Udayan Sangha', x: 450, y: 575, zone: 'SOUTH' },
+    { id: 'puja_jodhpur_park', name: 'Jodhpur Park', x: 470, y: 550, zone: 'SOUTH' },
+    { id: 'puja_95_pally', name: '95 Pally Jodhpur Park', x: 450, y: 560, zone: 'SOUTH' },
+    { id: 'puja_golf_green', name: 'Golf Green Sarbojanin', x: 430, y: 580, zone: 'SOUTH' },
+    { id: 'puja_naktala_udayan', name: 'Naktala Udayan Sangha', x: 470, y: 585, zone: 'SOUTH' },
 
     // Behala & Budge Budge Suburban Corridor
+    { id: 'puja_behala_club', name: 'Behala Club', x: 260, y: 535, zone: 'SUBURBAN' },
+    { id: 'puja_behala_devdaru', name: 'Behala Devdaru Fatak', x: 240, y: 545, zone: 'SUBURBAN' },
     { id: 'puja_behala_notun_dal', name: 'Behala Notun Dal', x: 250, y: 555, zone: 'SUBURBAN' },
+    { id: 'puja_haridevpur_41_pally', name: 'Haridevpur 41 Pally', x: 295, y: 560, zone: 'SUBURBAN' },
+    { id: 'puja_ajeya_sanghati', name: 'Ajeya Sanghati (Haridevpur)', x: 280, y: 570, zone: 'SUBURBAN' },
     { id: 'puja_barisha_club', name: 'Barisha Club (Sakher Bazar)', x: 220, y: 570, zone: 'SUBURBAN' },
-    { id: 'puja_budge_budge', name: 'Budge Budge Sarbojanin', x: 120, y: 580, zone: 'SUBURBAN' }
+    { id: 'puja_nangi_kalibari', name: 'Nangi Kalibari', x: 180, y: 575, zone: 'SUBURBAN' },
+    { id: 'puja_batanagar_sarbojanin', name: 'Batanagar Sarbojanin', x: 160, y: 565, zone: 'SUBURBAN' },
+    { id: 'puja_kalipur_sarbojanin', name: 'Kalipur Sarbojanin', x: 100, y: 585, zone: 'SUBURBAN' },
+    { id: 'puja_budge_budge', name: 'Budge Budge Sarbojanin', x: 120, y: 580, zone: 'SUBURBAN' },
+    { id: 'puja_pujali_sarbojanin', name: 'Pujali Municipal Park', x: 80, y: 590, zone: 'SUBURBAN' }
   ];
 
   return (

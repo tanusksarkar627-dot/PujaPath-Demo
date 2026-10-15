@@ -17,6 +17,7 @@ import {
 } from '../types/domain';
 import { CandidatePath, IRouteBuilder } from '../types/engine';
 import { TransitGraphRouter } from './router';
+import { MOCK_TRANSIT_NODES } from '../services/mock/data';
 
 export class DeterministicRouteBuilder implements IRouteBuilder {
   constructor(
@@ -333,5 +334,16 @@ function resolveNearestNode(
       return puja.nearestTransitNodeIds[0];
     }
   }
-  return 'node_sealdah';
+  let nearestNodeId = 'node_sealdah';
+  let minDistance = Number.MAX_VALUE;
+  for (const node of MOCK_TRANSIT_NODES) {
+    const dLat = (node.location.latitude - coords.latitude) * 111000;
+    const dLon = (node.location.longitude - coords.longitude) * 102000;
+    const dist = Math.hypot(dLat, dLon);
+    if (dist < minDistance) {
+      minDistance = dist;
+      nearestNodeId = node.id;
+    }
+  }
+  return nearestNodeId;
 }
